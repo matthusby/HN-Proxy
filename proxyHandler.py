@@ -9,9 +9,9 @@ class AssestHandler(webapp.RequestHandler):
 
 		if 'user' in self.request.cookies:
 			fetch_headers = {'Cookie':'user=' + self.request.cookies['user']}
-			result = urlfetch.fetch(url, headers=fetch_headers, follow_redirects=False)
+			result = urlfetch.fetch(url, headers=fetch_headers, follow_redirects=False, deadline=10)
 		else:
-			result = urlfetch.fetch(url, follow_redirects=False)
+			result = urlfetch.fetch(url, follow_redirects=False, deadline=10)
 
 		if 'set-cookie' in result.headers:
 			self.response.headers.add_header('set-cookie', result.headers.get('set-cookie'))
@@ -30,9 +30,9 @@ class AssestHandler(webapp.RequestHandler):
 		post_data = post_data[:-1]
 		if 'user' in self.request.cookies:
 			fetch_headers = {'Cookie':'user=' + self.request.cookies['user']}
-			result = urlfetch.fetch(url, method=urlfetch.POST, headers=fetch_headers, payload=post_data, follow_redirects=False)
+			result = urlfetch.fetch(url, method=urlfetch.POST, headers=fetch_headers, payload=post_data, follow_redirects=False, deadline=10)
 		else:
-			result = urlfetch.fetch(url, method=urlfetch.POST, payload=post_data, follow_redirects=False)
+			result = urlfetch.fetch(url, method=urlfetch.POST, payload=post_data, follow_redirects=False, deadline=10)
 
 		if 'set-cookie' in result.headers:
 			self.response.headers.add_header('set-cookie', result.headers.get('set-cookie'))
