@@ -17,7 +17,7 @@ class AssestHandler(webapp.RequestHandler):
 			self.response.headers.add_header('set-cookie', result.headers.get('set-cookie'))
 
 		if 'location' in result.headers:
-			self.redirect('/' + result.headers.get('location'))
+			self.redirect(result.headers.get('location'))
 		else:
 			self.response.headers.add_header('content-type', result.headers['content-type'])
 			self.response.out.write(result.content)
@@ -38,6 +38,6 @@ class AssestHandler(webapp.RequestHandler):
 			self.response.headers.add_header('set-cookie', result.headers.get('set-cookie'))
 
 		if 'location' in result.headers:
-			self.redirect('/' + result.headers.get('location'))
+			self.redirect(result.headers.get('location'))
 		else:
 			self.response.out.write(result.content)
